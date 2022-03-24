@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "express": "^4.17.3",
-    "sequelize": "^6.17.0",
     "sqlite3": "^5.0.2",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12"
@@ -18,7 +17,6 @@
     "@vitejs/plugin-vue": "^2.2.2",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
-    "sequelize-cli": "^6.4.1",
     "vite": "^2.8.4"
   }
 }
