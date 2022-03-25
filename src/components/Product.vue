@@ -1,24 +1,32 @@
 <script setup>
-defineProps(['name', 'desc', 'price']);
+const props = defineProps(['pid', 'name', 'desc', 'price']);
+const emit = defineEmits(['open-quick-view']);
+
+let clickHandler = () => {
+    emit(props.pid);
+};
+
 </script>
 
 <template>
     <div class="product">
-        <div class="card-header">
-            <h4>{{ name }}</h4>
-        </div>
-        <div class="card-body">
-            <p>{{ desc }}</p>
-            <p>${{ price }}</p>
-        </div>
-        <div class="card-footer">>> Add to cart</div>
+        <a class="product-link" @click="$emit('open-quick-view',props.pid)">
+            <div class="card-header">
+                <h4>{{ name }}</h4>
+            </div>
+            <div class="card-body">
+                <p>{{ desc }}</p>
+                <p>${{ price }}</p>
+            </div>
+            <div class="card-footer">>> Add to cart</div>
+        </a>
     </div>
 </template>
 
 <style scoped>
 .product .card-header {
     flex-basis: 75px;
-    font-weight: 700;
+    font-weight: 500;
     flex-grow: 0;
 }
 
@@ -29,9 +37,15 @@ defineProps(['name', 'desc', 'price']);
 
 .product .card-footer {
     /* flex-basis: px; */
-    flex-grow: 0; 
+    flex-grow: 0;
     color: #444;
     align-self: flex-end;
+}
+
+.product-link {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .product {
@@ -39,16 +53,16 @@ defineProps(['name', 'desc', 'price']);
     border-radius: 2px;
     padding: 15px;
     width: 250px;
-    height: 250px;
-    font-weight: 500;
+    height: 275px;
+    /* font-weight: 500; */
     display: flex;
     flex-direction: column;
     /* width:100px;
         height: 100px;; */
     /* background-color: rgb(245,245,245); */
     color: black;
-    border: solid 2px rgb(8, 8, 8);
-    box-shadow: 0 0 4px rgba(1, 1, 1, 0.3);
+    border: solid 2px rgb(76, 78, 82);
+    box-shadow: 0 0 2px rgba(1, 1, 1, 0.3);
     margin: 0 15px 15px 15px;
 }
 
@@ -59,5 +73,6 @@ p {
 h4 {
     font-size: 14pt;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 </style>

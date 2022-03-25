@@ -1,8 +1,13 @@
 <script setup>
 import { onBeforeUpdate, onMounted, onUpdated } from 'vue';
 import Product from './Product.vue';
-defineProps(['productData']);
+defineProps(['productData','cb']);
+const emit = defineEmits(['open-quick-view']);
 
+let clickHandler = function(id) {
+    console.log('clicked2');
+    emit('open-quick-view', id);
+};
 
 </script>
 
@@ -11,8 +16,10 @@ defineProps(['productData']);
         <Product
             v-for="product in productData"
             :key="product.id"
+            :pid="product.id"
             :name="product.name"
             :desc="product.desc"
+            @open-quick-view="clickHandler"
             :price="product.price"
         />
     </div>

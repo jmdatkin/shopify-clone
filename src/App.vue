@@ -34,8 +34,8 @@ function closeCart() {
       </div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/artists">Artists</RouterLink>
         <RouterLink to="/shop">Shop</RouterLink>
+        <RouterLink to="/artists">Artists</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
       </nav>
     </div>
@@ -107,6 +107,7 @@ function closeCart() {
   text-transform: uppercase;
   font-family: "Poppins";
   font-weight: 700;
+  color: rgb(21, 22, 27);
   font-size: 24pt;
   letter-spacing: 50%;
   line-height: 150%;
@@ -120,6 +121,7 @@ header {
   display: flex;
   place-items: center;
   margin-bottom: 40px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 header .wrapper {
   display: flex;

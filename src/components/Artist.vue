@@ -16,10 +16,10 @@ defineProps(['name','desc', 'propic']);
 
 <style scoped>
     .artist-row {
-        border: solid 2px black;
+        /* border: solid 2px rgb(69, 69, 80); */
         padding: 25px;
         display: flex;
-        
+        box-shadow: 0 0 3px rgba(0,0,0,0.2);; 
         flex-direction: row;
         margin-bottom: 25px;
     }
@@ -55,7 +55,8 @@ defineProps(['name','desc', 'propic']);
         flex-shrink: 0;
         background-position: center;
         /* background-size: 95%; */
-        filter: contrast(0.8);
+        /* filter: contrast(0.8); */
+        filter: contrast(0.8) grayscale(65%);
     }
 
 </style>
