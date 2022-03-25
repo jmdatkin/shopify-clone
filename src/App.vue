@@ -1,35 +1,59 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
-import FrontPage from './components/FrontPage.vue';
 import SiteTitle from './components/SiteTitle.vue';
+
+let fancy = false;
+
+const cartOpen = ref(false);
+
+function toggleCart() {
+  cartOpen.value = !cartOpen.value;
+}
+
+function closeCart() {
+  cartOpen.value = false;
+}
 
 </script>
 
 <template>
+  <div class="cart-overlay">
+    <div class="cart-sidebar" :class="{closed: !cartOpen}">
+      <div class="cart-toggle">
+        <a v-on:click="toggleCart">Cart</a>
+        <!-- <font-awesome-icon icon="fa-solid fa-cart-shopping" /> -->
+      </div>
+    </div>
+  </div>
   <header>
     <div class="wrapper">
       <div class="site-title">
-        <SiteTitle />
-        <!-- <h2>Galactic Records</h2> -->
+        <SiteTitle v-if="fancy" />
+        <h2 v-else>Galactic Records</h2>
       </div>
       <nav>
-        <a>Hello</a>
-        <a>Hi</a>
-        <a>Bookings</a>
-        <a>Hi</a>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/artists">Artists</RouterLink>
+        <RouterLink to="/shop">Shop</RouterLink>
+        <RouterLink to="/contact">Contact</RouterLink>
       </nav>
     </div>
     <!-- <nav>Hello</nav> -->
   </header>
 
   <div class="app-wrapper">
-    <FrontPage />
+    <RouterView />
+    <!-- <FrontPage /> -->
   </div>
 </template>
 
 <style>
 @import "@/assets/base.css";
+
+:root {
+  --sidebar-width: 400px;
+}
 
 #app {
   font-weight: normal;
@@ -42,6 +66,41 @@ import SiteTitle from './components/SiteTitle.vue';
   max-width: 1280px;
   margin: 0 auto;
   /* padding: 2rem; */
+}
+
+.cart-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1002;
+  pointer-events: none;
+  /* background-color: rgba(255,0,0,0.5); */
+}
+
+.cart-overlay > * {
+  pointer-events: auto;
+}
+
+.cart-toggle {
+  top: 0;
+  right: 40px;
+  /* border: solid 1px red; */
+  width: 75px;
+  height: 75px;
+}
+
+.cart-sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  border-left: solid 1px black;
+  background-color: #fff;
+  position: fixed;
+  transition: right 0.2s ease-in-out;
+  right: 0;
+}
+
+.closed {
+  right: calc(-1*var(--sidebar-width));
 }
 
 .site-title {
@@ -75,7 +134,7 @@ header .wrapper {
 }
 nav {
   width: 100%;
-  font-size: 18pt;
+  font-size: 13pt;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
@@ -84,8 +143,14 @@ nav {
 
 nav a {
   display: inline-block;
+  color: black;
+  text-decoration: none;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 nav a:first-of-type {

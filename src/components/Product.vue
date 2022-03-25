@@ -1,24 +1,63 @@
 <script setup>
-    defineProps(['name', 'desc']);
+defineProps(['name', 'desc', 'price']);
 </script>
 
 <template>
     <div class="product">
-        <h4>{{ name }}</h4><br>
-        <p>{{ desc }}</p>
+        <div class="card-header">
+            <h4>{{ name }}</h4>
+        </div>
+        <div class="card-body">
+            <p>{{ desc }}</p>
+            <p>${{ price }}</p>
+        </div>
+        <div class="card-footer">>> Add to cart</div>
     </div>
 </template>
 
 <style scoped>
-    .product {
-        border-radius: 2px;
-        padding: 5px;
-        /* width:100px;
+.product .card-header {
+    flex-basis: 75px;
+    font-weight: 700;
+    flex-grow: 0;
+}
+
+.product .card-body {
+    height: auto;
+    flex-grow: 1;
+}
+
+.product .card-footer {
+    /* flex-basis: px; */
+    flex-grow: 0; 
+    color: #444;
+    align-self: flex-end;
+}
+
+.product {
+    line-height: 133%;
+    border-radius: 2px;
+    padding: 15px;
+    width: 250px;
+    height: 250px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    /* width:100px;
         height: 100px;; */
-        /* background-color: rgb(245,245,245); */
-        color: black;
-        border: solid 1px #555;
-        box-shadow: 0 0 2px rgba(1.0,1.0,1.0,0.2);
-        margin: 0 15px;
-    }
+    /* background-color: rgb(245,245,245); */
+    color: black;
+    border: solid 2px rgb(8, 8, 8);
+    box-shadow: 0 0 4px rgba(1, 1, 1, 0.3);
+    margin: 0 15px 15px 15px;
+}
+
+p {
+    margin-bottom: 7px;
+}
+
+h4 {
+    font-size: 14pt;
+    margin-bottom: 5px;
+}
 </style>

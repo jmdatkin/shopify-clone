@@ -1,7 +1,6 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import HALO from 'vanta/dist/vanta.halo.min';
 
 // defineProps(['width','height']);
 let width = 600;
@@ -10,7 +9,6 @@ let height = 100;
 let fontLoaded = false;
 
 const canvasRef = ref(null);
-const vanta = ref(null);
 
 let font = new FontFace("Poppins", "url('src/assets/fonts/Poppins-Bold.ttf')");
 document.fonts.add(font);
@@ -67,7 +65,6 @@ const init = function () {
 };
 
 onMounted(() => {
-    console.log(VANTA);
 
     let fxn = () => {
         init();
@@ -75,7 +72,6 @@ onMounted(() => {
     }
     fxn();
     // paint();
-    // HALO('.vanta-bg');        
 });
 
 
