@@ -1,14 +1,24 @@
 <script setup>
+import { onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import FrontPage from './components/FrontPage.vue';
+import SiteTitle from './components/SiteTitle.vue';
+
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <div class="site-title">
-        <h2>Galactic Records</h2>
+        <SiteTitle />
+        <!-- <h2>Galactic Records</h2> -->
       </div>
+      <nav>
+        <a>Hello</a>
+        <a>Hi</a>
+        <a>Bookings</a>
+        <a>Hi</a>
+      </nav>
     </div>
     <!-- <nav>Hello</nav> -->
   </header>
@@ -65,7 +75,9 @@ header .wrapper {
 }
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 18pt;
+  font-weight: 700;
+  text-transform: uppercase;
   text-align: center;
   margin-top: 2rem;
 }
