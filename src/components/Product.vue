@@ -65,7 +65,7 @@ let clickHandler = () => {
     color: black;
     border: solid 2px rgb(76, 78, 82);
     box-shadow: 0 0 2px rgba(1, 1, 1, 0.3);
-    margin: 0 15px 15px 15px;
+    margin: 5px;
     cursor: pointer;
     box-sizing: border-box;
 }

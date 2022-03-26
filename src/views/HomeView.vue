@@ -7,12 +7,13 @@
       <div class="card-wrapper">
         <h1>Bold.</h1>
         <div class="card">
-          <h2>Groundbreaking artists.</h2>
-          <p>Our artists are 100% organically sourced. That means no pollution, no waste. Need we say more?</p>
           <div class="card-content">
-
+            <h2>Groundbreaking artists.</h2>
+            <p>Our artists are 100% organically sourced. That means no pollution, no waste. Need we say more?</p>
           </div>
-          <img src="/src/assets/home_1.png">
+          <div class="card-footer"></div>
+          <div class="card-image"></div>
+          <img src="/src/assets/home_1.jpg" />
         </div>
       </div>
       <div class="filler"></div>
@@ -21,7 +22,13 @@
       <div class="filler"></div>
       <div class="card-wrapper">
         <h1>Cutting-edge.</h1>
-        <div class="card">Content</div>
+        <div class="card">
+          <div class="card-content">
+            <h2>High quality tech and high-fidelity sound.</h2>
+            <p>Each of our three studios is equipped with state-of-the-art recording equipment.</p>
+          </div>
+          <img src="/src/assets/home_2.jpg" />
+        </div>
       </div>
     </div>
     <FrontPage />
@@ -45,6 +52,13 @@ p {
 
 img {
   margin: 0 auto;
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+  object-position: 10% 15%;
+  pointer-events: none;
+  /* width: 640px; */
+  /* align-self: center;; */
   /* clip-path: circle(360px at center); */
   /* clip-path: inset(20px,20px,20px,20px); */
 }
@@ -59,10 +73,20 @@ img {
 .card {
   /* height: 450px; */
   min-height: 450px;
-  padding: 15px;
   background-color: #fff;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0, 0.8);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
   color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-footer {
+  height: fit-content;
 }
 
 .card-wrapper {
@@ -72,6 +96,6 @@ img {
 
 .filler {
   flex-grow: 0;
-  flex-basis: 400px;
+  flex-basis: 200px;
 }
 </style>

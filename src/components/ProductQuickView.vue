@@ -32,8 +32,8 @@ console.log(props.data);
 }
 
 .quick-view {
-    width: 800px;
-    height: 600px;
+    width: 1200px;
+    height: 720px;
     background-color: #fff;
     border: solid 3px black;
     margin: 0 auto;
@@ -48,14 +48,15 @@ console.log(props.data);
     height: 100%;
     position: absolute;
     z-index: 998;
-    background-color: rgba(255, 255, 255, 0.7);
+    /* background-color: rgba(255, 255, 255, 0.7); */
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .quick-view .card-header {
     flex-basis: 75px;
     font-weight: 500;
     flex-grow: 0;
-    border-bottom:solid 2px black;
+    /* border-bottom:solid 2px black; */
 }
 
 .quick-view .card-body {

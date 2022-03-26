@@ -33,10 +33,9 @@ let clickHandler = function (id) {
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
 }
 
 .fade-enter-active,

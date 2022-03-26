@@ -12,12 +12,12 @@ const quickViewing = ref(null);
 
 const openQuickView = function (id) {
     console.log(data.value);
-    let newValue = data.value.filter(x=> {return x.id===id})[0];  //Bad, change later
+    let newValue = data.value.filter(x => { return x.id === id })[0];  //Bad, change later
     console.log(newValue);
     quickViewing.value = newValue;
 };
 
-const closeQuickView = function() {
+const closeQuickView = function () {
     quickViewing.value = null;
 }
 
@@ -43,9 +43,13 @@ fetchData()
 
 <template>
     <main>
-        <ProductQuickView v-if="quickViewing !== null" :data="quickViewing.value" 
-        @close-quick-view="closeQuickView"
-         />
+        <Transition name="quickview-fade">
+            <ProductQuickView
+                v-if="quickViewing !== null"
+                :data="quickViewing.value"
+                @close-quick-view="closeQuickView"
+            />
+        </Transition>
         <div class="panel-wrapper">
             <div class="left-sidebar">Categories</div>
             <div class="product-wrapper">
@@ -84,5 +88,15 @@ fetchData()
 }
 .product-wrapper {
     flex-grow: 1;
+}
+
+.quickview-fade-enter-active,
+.quickview-fade-leave-active {
+    transition: opacity 0.1s ease;
+}
+
+.quickview-fade-enter-from,
+.quickview-fade-leave-to {
+    opacity: 0;
 }
 </style>
