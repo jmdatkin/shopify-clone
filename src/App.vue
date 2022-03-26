@@ -18,33 +18,40 @@ function closeCart() {
 </script>
 
 <template>
-  <div class="cart-overlay">
-    <div class="cart-sidebar" :class="{closed: !cartOpen}">
-      <div class="cart-toggle">
-        <a v-on:click="toggleCart">Cart</a>
-        <!-- <font-awesome-icon icon="fa-solid fa-cart-shopping" /> -->
-      </div>
-    </div>
-  </div>
-  <header>
-    <div class="wrapper">
-      <div class="site-title">
-        <SiteTitle v-if="fancy" />
-        <h2 v-else>Galactic Records</h2>
-      </div>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/shop">Shop</RouterLink>
-        <RouterLink to="/artists">Artists</RouterLink>
-        <RouterLink to="/contact">Contact</RouterLink>
-      </nav>
-    </div>
-    <!-- <nav>Hello</nav> -->
-  </header>
-
   <div class="app-wrapper">
-    <RouterView />
-    <!-- <FrontPage /> -->
+    <div class="cart-overlay">
+      <div class="cart-sidebar" :class="{ closed: !cartOpen }">
+        <div class="cart-toggle">
+          <a v-on:click="toggleCart">Cart</a>
+          <!-- <font-awesome-icon icon="fa-solid fa-cart-shopping" /> -->
+        </div>
+      </div>
+    </div>
+    <div class="app-bg"></div>
+    <header>
+      <div class="wrapper">
+        <div class="site-title">
+          <SiteTitle v-if="fancy" />
+          <h2 v-else>Galactic Records</h2>
+        </div>
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/shop">Shop</RouterLink>
+          <RouterLink to="/artists">Artists</RouterLink>
+          <RouterLink to="/contact">Contact</RouterLink>
+        </nav>
+      </div>
+      <!-- <nav>Hello</nav> -->
+    </header>
+
+    <div class="app-section">
+      <div class="app-container">
+        <Transition>
+          <RouterView />
+        </Transition>
+        <!-- <FrontPage /> -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -53,6 +60,11 @@ function closeCart() {
 
 :root {
   --sidebar-width: 400px;
+  --header-height: 200px;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 #app {
@@ -62,10 +74,34 @@ function closeCart() {
   height: 100%;
 }
 
-.app-wrapper {
+.app-container {
   max-width: 1280px;
   margin: 0 auto;
   /* padding: 2rem; */
+}
+
+.app-wrapper,
+.app-bg {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-wrapper {
+  position: absolute;
+}
+
+.app-bg {
+  background: url("/src/assets/shop_bg.png");
+  background-size: cover;
+  position: fixed;
+
+  z-index: -3;
+}
+
+.app-section {
+  width: 100%;
+  padding-top: 40px;
+  height: calc(100% - var(--header-height));
 }
 
 .cart-overlay {
@@ -100,7 +136,7 @@ function closeCart() {
 }
 
 .closed {
-  right: calc(-1*var(--sidebar-width));
+  right: calc(-1 * var(--sidebar-width));
 }
 
 .site-title {
@@ -115,13 +151,15 @@ function closeCart() {
 
 header {
   /* line-height: 1.5; */
-  min-height: 200px;
+  min-height: var(--header-height);
   min-width: 100vw;
   border-bottom: solid 1px #333;
   display: flex;
   place-items: center;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  /* position: sticky; */
+  z-index: 1005;
+  background-color: #fff;
 }
 header .wrapper {
   display: flex;
@@ -157,5 +195,21 @@ nav a:hover {
 
 nav a:first-of-type {
   border: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #fff;
+  }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

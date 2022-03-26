@@ -9,8 +9,10 @@ let clickHandler = () => {
 </script>
 
 <template>
-    <div class="product">
-        <a class="product-link" @click="$emit('open-quick-view',props.pid)">
+    <div class="product" @click="$emit('open-quick-view', props.pid)">
+        <!-- <div class="product-border"></div> -->
+        <!-- <a class="product-link" > -->
+        <div class="product-content">
             <div class="card-header">
                 <h4>{{ name }}</h4>
             </div>
@@ -19,7 +21,8 @@ let clickHandler = () => {
                 <p>${{ price }}</p>
             </div>
             <div class="card-footer">>> Add to cart</div>
-        </a>
+        </div>
+        <!-- </a> -->
     </div>
 </template>
 
@@ -50,8 +53,7 @@ let clickHandler = () => {
 
 .product {
     line-height: 133%;
-    border-radius: 2px;
-    padding: 15px;
+    /* border-radius: 2px; */
     width: 250px;
     height: 275px;
     /* font-weight: 500; */
@@ -64,8 +66,21 @@ let clickHandler = () => {
     border: solid 2px rgb(76, 78, 82);
     box-shadow: 0 0 2px rgba(1, 1, 1, 0.3);
     margin: 0 15px 15px 15px;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
+.product-content {
+    padding: 15px;
+}
+
+.product-border {
+    position: absolute;
+
+    width: 250px;
+    height: 275px;
+
+}
 p {
     margin-bottom: 7px;
 }
@@ -75,4 +90,14 @@ h4 {
     margin-bottom: 5px;
     font-weight: 600;
 }
+
+@media (prefers-color-scheme: dark) {
+    .product {
+        /* color: #fff; */
+        /* border-color: #fff; */
+        border: 0;
+        background-color: #eee;
+    }
+}
+
 </style>

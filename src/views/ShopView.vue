@@ -11,8 +11,10 @@ const dataReady = ref(false);
 const quickViewing = ref(null);
 
 const openQuickView = function (id) {
-    console.log('opening quick view: '+id);
-    quickViewing.value = id;
+    console.log(data.value);
+    let newValue = data.value.filter(x=> {return x.id===id})[0];  //Bad, change later
+    console.log(newValue);
+    quickViewing.value = newValue;
 };
 
 const closeQuickView = function() {
@@ -41,8 +43,9 @@ fetchData()
 
 <template>
     <main>
-        <ProductQuickView v-if="quickViewing !== null" :id="quickViewing.value" 
-        @close-quick-view="closeQuickView" />
+        <ProductQuickView v-if="quickViewing !== null" :data="quickViewing.value" 
+        @close-quick-view="closeQuickView"
+         />
         <div class="panel-wrapper">
             <div class="left-sidebar">Categories</div>
             <div class="product-wrapper">
@@ -76,6 +79,7 @@ fetchData()
 }
 
 .loading {
+    padding: 70px 0;
     place-items: center;
 }
 .product-wrapper {

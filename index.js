@@ -10,14 +10,22 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", express.static(path.resolve(__dirname, 'dist')));
 
-app.get("/api/products", (req,res) => {
+app.get("/api/products", (req, res) => {
     knex.select("*").from("products")
-    .then((data) => res.status(200).send(data))
-    .catch(err => res.status(500).send("Error: "+err));
+        .then((data) => res.status(200).send(data))
+        .catch(err => res.status(500).send("Error: " + err));
+});
+
+app.get("/api/product/:id/details", (req, res) => {
+    knex.select('*').from('products').where({
+        id: req.params.id
+    })
+        .then(data => res.status(200).send(data))
+        .catch(err => res.status(500).send("Error: " + err));
 });
 
 app.get("/api/product/:id", (req,res) => {
@@ -27,19 +35,26 @@ app.get("/api/product/:id", (req,res) => {
     .then(data => res.status(200).send(data))
     .catch(err => res.status(500).send("Error: "+err));
 });
+app.get("/api/product/:id", (req, res) => {
+    knex.select('*').from('products').where({
+        id: req.params.id
+    })
+        .then(data => res.status(200).send(data))
+        .catch(err => res.status(500).send("Error: " + err));
+});
 
-app.post("/api/product", (req,res) => {
+app.post("/api/product", (req, res) => {
     let data = req.body;
 
     knex.table('products').insert(data)
-    .then(() => res.status(200).send("Success"))
-    .catch(err => res.status(500).send("Error: "+err));
+        .then(() => res.status(200).send("Success"))
+        .catch(err => res.status(500).send("Error: " + err));
 });
 
-app.delete("/api/product/:id", (req,res) => {
+app.delete("/api/product/:id", (req, res) => {
     knex.table('products').where('id', req.params.id).del()
-    .then(() => res.status(200).send("Success"))
-    .catch(err => res.status(500).send("Error: "+err));
+        .then(() => res.status(200).send("Success"))
+        .catch(err => res.status(500).send("Error: " + err));
 });
 
 
