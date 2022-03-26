@@ -6,6 +6,8 @@ exports.up = function(knex) {
     return knex.schema.createTable('categories', table => {
         table.increments();
         table.string('name');
+        table.integer('parent_category_id').unsigned()
+        table.foreign('parent_category_id').references('categories.id');
     });
 };
 

@@ -10,6 +10,12 @@ module.exports = {
     useNullAsDefault: true,
     connection: {
       filename: './database.sqlite'
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    },
+    seeds: {
+      directory: './data/seeds'
     }
   },
 
