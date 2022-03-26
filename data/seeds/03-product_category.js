@@ -4,12 +4,19 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex('table_name').truncate()
-  await knex('table_name').insert([
+  await knex('product_category').truncate()
+  await knex('product_category').insert([
     {
-      id: 1,
       product_id: 1,
       category_id: 1
-    }
+    },
+    {
+      product_id: 2,
+      category_id: 1
+    },
+    {
+      product_id: 3,
+      category_id: 2
+    },
   ]);
 };

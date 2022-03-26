@@ -28,12 +28,12 @@ app.get("/api/product/:id/details", (req, res) => {
         .catch(err => res.status(500).send("Error: " + err));
 });
 
-app.get("/api/product/:id", (req,res) => {
+app.get("/api/product/:id", (req, res) => {
     knex.select('*').from('products').where({
         id: req.params.id
     }).first()
-    .then(data => res.status(200).send(data))
-    .catch(err => res.status(500).send("Error: "+err));
+        .then(data => res.status(200).send(data))
+        .catch(err => res.status(500).send("Error: " + err));
 });
 app.get("/api/product/:id", (req, res) => {
     knex.select('*').from('products').where({
@@ -56,6 +56,23 @@ app.delete("/api/product/:id", (req, res) => {
         .then(() => res.status(200).send("Success"))
         .catch(err => res.status(500).send("Error: " + err));
 });
+
+
+
+app.get("/api/categories", (req, res) => {
+    knex.select("*").from("categories")
+        .then((data) => res.status(200).send(data))
+        .catch(err => res.status(500).send("Error: " + err));
+});
+
+app.get("/api/categories/:cat_id/products", (req, res) => {
+    knex.select("*").from("product_category")
+        .where('category_id', req.params.cat_id)
+        .join('products', 'product_id', '=', 'products.id')
+        .then((data) => res.status(200).send(data))
+        .catch(err => res.status(500).send("Error: " + err));
+
+})
 
 
 

@@ -4,6 +4,7 @@ import Product from '../components/Product.vue';
 import ProductList from '../components/ProductList.vue';
 import LoadingIcon from '../components/LoadingIcon.vue';
 import ProductQuickView from '../components/ProductQuickView.vue';
+import Categories from '../components/Categories.vue';
 
 const data = ref([]);
 const dataReady = ref(false);
@@ -19,6 +20,20 @@ const openQuickView = function (id) {
 
 const closeQuickView = function () {
     quickViewOpen.value = false;
+}
+
+async function fetchProductsInCategory(category_id) {
+    fetch(`http://localhost:8080/api/categories/${category_id}/products`)
+    .catch(err => {
+        console.error(err);
+    })
+    .then(myData => {
+        return myData.json()
+    })
+    .then(json => {
+        data.value = json;
+        dataReady.value = true;
+    })
 }
 
 async function fetchData() {
@@ -50,7 +65,9 @@ fetchData()
             />
         </Transition>
         <div class="panel-wrapper">
-            <div class="left-sidebar">Categories</div>
+            <div class="left-sidebar">
+                <Categories @user-select-category="fetchProductsInCategory"/>
+                </div>
             <div class="product-wrapper">
                 <!-- <Loadin -->
                 <ProductList
