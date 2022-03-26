@@ -23,7 +23,7 @@ app.get("/api/products", (req, res) => {
 app.get("/api/product/:id/details", (req, res) => {
     knex.select('*').from('products').where({
         id: req.params.id
-    })
+    }).first()
         .then(data => res.status(200).send(data))
         .catch(err => res.status(500).send("Error: " + err));
 });
@@ -31,7 +31,7 @@ app.get("/api/product/:id/details", (req, res) => {
 app.get("/api/product/:id", (req,res) => {
     knex.select('*').from('products').where({
         id: req.params.id
-    })
+    }).first()
     .then(data => res.status(200).send(data))
     .catch(err => res.status(500).send("Error: "+err));
 });

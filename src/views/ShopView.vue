@@ -9,20 +9,19 @@ const data = ref([]);
 const dataReady = ref(false);
 
 const quickViewing = ref(null);
+const quickViewOpen = ref(false);
 
 const openQuickView = function (id) {
-    console.log(data.value);
-    let newValue = data.value.filter(x => { return x.id === id })[0];  //Bad, change later
-    console.log(newValue);
-    quickViewing.value = newValue;
+    console.log(id);
+    quickViewing.value = id;
+    quickViewOpen.value = true;
 };
 
 const closeQuickView = function () {
-    quickViewing.value = null;
+    quickViewOpen.value = false;
 }
 
 async function fetchData() {
-    let ajaxData = [];
     return fetch('http://localhost:8080/api/products');
 }
 
@@ -45,8 +44,8 @@ fetchData()
     <main>
         <Transition name="quickview-fade">
             <ProductQuickView
-                v-if="quickViewing !== null"
-                :data="quickViewing.value"
+                v-if="quickViewOpen"
+                :pid="quickViewing"
                 @close-quick-view="closeQuickView"
             />
         </Transition>

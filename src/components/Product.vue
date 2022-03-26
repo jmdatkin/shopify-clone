@@ -22,6 +22,9 @@ let clickHandler = () => {
             </div>
             <div class="card-footer">>> Add to cart</div>
         </div>
+        <div class="card-img">
+            <img src="/src/assets/img/products/hoodie.webp" />
+        </div>
         <!-- </a> -->
     </div>
 </template>
@@ -45,6 +48,17 @@ let clickHandler = () => {
     align-self: flex-end;
 }
 
+.product .card-img {
+    width: 100%;
+    height: auto;
+}
+
+.product .card-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 .product-link {
     display: block;
     width: 100%;
@@ -62,12 +76,14 @@ let clickHandler = () => {
     /* width:100px;
         height: 100px;; */
     /* background-color: rgb(245,245,245); */
+    justify-content: space-between;
     color: black;
     border: solid 2px rgb(76, 78, 82);
     box-shadow: 0 0 2px rgba(1, 1, 1, 0.3);
     margin: 5px;
     cursor: pointer;
     box-sizing: border-box;
+    overflow:hidden;
 }
 
 .product-content {
@@ -79,7 +95,6 @@ let clickHandler = () => {
 
     width: 250px;
     height: 275px;
-
 }
 p {
     margin-bottom: 7px;
@@ -99,5 +114,4 @@ h4 {
         background-color: #eee;
     }
 }
-
 </style>
