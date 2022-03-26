@@ -6,7 +6,7 @@ exports.up = function (knex) {
     return knex.schema.createTable('product_category', table => {
         table.increments();
         table.integer('product_id').unsigned();
-        table.foreign('user_id').references('products.id');
+        table.foreign('product_id').references('products.id');
         table.integer('category_id').unsigned();
         table.foreign('category_id').references('categories.id');        
     });
