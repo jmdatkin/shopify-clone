@@ -5,6 +5,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview --port 5050",
+    "deploy": "vite build && node index.js",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {

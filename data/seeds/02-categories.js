@@ -12,7 +12,7 @@ exports.seed = async function(knex) {
     },
     {
       id: 2,
-      name: "Food"
+      name: "Music"
     },
   ]);
 };

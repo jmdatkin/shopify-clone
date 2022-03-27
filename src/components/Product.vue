@@ -1,29 +1,31 @@
 <script setup>
-const props = defineProps(['pid', 'name', 'desc', 'price']);
+const props = defineProps(['data', 'pid']);
 const emit = defineEmits(['open-quick-view']);
 
+
 let clickHandler = () => {
-    emit(props.pid);
+    console.log(props);
+    emit(props.data.id);
 };
 
 </script>
 
 <template>
-    <div class="product" @click="$emit('open-quick-view', props.pid)">
+    <div class="product" @click="$emit('open-quick-view', props.data.id)">
         <!-- <div class="product-border"></div> -->
         <!-- <a class="product-link" > -->
         <div class="product-content">
             <div class="card-header">
-                <h4>{{ name }}</h4>
+                <h4>{{ data.name }}</h4>
             </div>
             <div class="card-body">
-                <p>{{ desc }}</p>
-                <p>${{ price }}</p>
+                <p>{{ data.desc }}</p>
+                <p>${{ data.price }}</p>
             </div>
             <div class="card-footer">>> Add to cart</div>
         </div>
         <div class="card-img">
-            <img src="/src/assets/img/products/hoodie.webp" />
+            <img v-bind:src="'/src/assets/img/product/'+props.data.img" />
         </div>
         <!-- </a> -->
     </div>
@@ -56,7 +58,7 @@ let clickHandler = () => {
 .product .card-img img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .product-link {

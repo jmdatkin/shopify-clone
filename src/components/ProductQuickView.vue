@@ -9,6 +9,7 @@ const dataReady = ref(false);
 
 fetch(`http://localhost:8080/api/product/${props.pid}/details`)
     .then(data => data.json()).then(data => {
+        console.log(data);
         productData.value = data;
         dataReady.value = true;
     })
@@ -33,7 +34,7 @@ fetch(`http://localhost:8080/api/product/${props.pid}/details`)
                 <div class="card-footer">>> Add to cart</div>
             </div>
             <div class="quick-view-card quick-view-image">
-                <img src="/src/assets/img/products/hoodie.webp" />
+                <img v-bind:src="`/src/assets/img/product/${productData.img}`" />
             </div>
         </div>
         <div class="quick-view-modal-bg" @click="$emit('close-quick-view')"></div>

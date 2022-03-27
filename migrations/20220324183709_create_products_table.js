@@ -8,7 +8,8 @@ exports.up = function(knex) {
         table.string('name');
         table.string('desc');
         table.decimal('price', 2);
-        table.binary('image');
+        // table.binary('image');
+        table.string('img');
     });
 };
 

@@ -23,6 +23,9 @@ const closeQuickView = function () {
 }
 
 async function fetchProductsInCategory(category_id) {
+    if (category_id < 1)
+        return fetchProducts();
+    dataReady.value = false;
     fetch(`http://localhost:8080/api/categories/${category_id}/products`)
     .catch(err => {
         console.error(err);
@@ -36,11 +39,9 @@ async function fetchProductsInCategory(category_id) {
     })
 }
 
-async function fetchData() {
-    return fetch('http://localhost:8080/api/products');
-}
-
-fetchData()
+async function fetchProducts() {
+    dataReady.value = false;
+    fetch('http://localhost:8080/api/products')
     .catch(err => {
         console.error(err);
     })
@@ -48,9 +49,13 @@ fetchData()
         return myData.json()
     })
     .then(json => {
+        console.log(json);
         data.value = json;
         dataReady.value = true;
     })
+}
+
+fetchProducts();
 
 
 </script>

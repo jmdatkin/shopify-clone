@@ -60,7 +60,12 @@ app.delete("/api/product/:id", (req, res) => {
 
 
 app.get("/api/categories", (req, res) => {
-    knex.select("*").from("categories")
+    // knex('product_category').groupBy('product_id').
+    knex.select().from(function() {
+        this.count('product_id', {as: 'num_products'}).select('category_id').from("product_category").groupBy("category_id")
+    }).join('categories', 'category_id', '=', 'categories.id')
+
+    // knex.select("*").from("categories")
         .then((data) => res.status(200).send(data))
         .catch(err => res.status(500).send("Error: " + err));
 });
